@@ -1,0 +1,161 @@
+//29.11.2019
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+
+
+
+int main () {
+	
+	int islem;
+	int tutar;
+	char isim[30];
+	char soyad[30];
+	float iban123;
+	int islem2;
+	int bakiye = 1000;
+	char TurkLirasi[3] = "TL";
+	
+	baslangic:
+	system("cls");
+	
+	
+	printf("MELIH BANK'A HOSGELDINIZ\n");
+	printf ("%s\t %d\ %s\n" , "BAKIYE:" , bakiye ,TurkLirasi);
+	
+	baslangic3:
+	
+	
+	printf("1:PARA CEKME\n2:PARA YATIRMA\n3:BAKIYE SORGULAMA\n4:HAVALE YAPMA\n5:KART IADE\nISLEM SECIN:");
+	scanf("%d" , &islem);
+	
+	switch(islem){
+	
+		case 1 :
+		baslangic2:
+		system("cls");
+		printf("BAKIYE: %d\n" , bakiye);
+		printf("CEKMEK ISTEDIGINIZ TUTARI GIRIN:");
+		scanf("%d" , &tutar);
+		
+		if (tutar == 0) {
+			printf("PARA CEKMEK ICIN ALT LIMIT 1 TLDIR\n");
+			printf("CIKIS YAPMAK ISTIYORSANIZ 0'A TEKRA PARA CEKME ISLEMI YAPMAK ISTIYORSANIZ 1'E BASIN: ");
+			scanf("%d" , &islem2);
+			if(islem2 == 1) {
+				goto baslangic;
+			}
+			else if (islem2 == 0){
+				printf("KARTINIZ IADE EDILDI");
+				return 0;
+			}
+		}
+		
+		if (bakiye>= tutar) {
+		
+		bakiye -= tutar;
+		printf("PARA CEKILDI...\nYeni BAKIYE: %d %s\n" , bakiye ,TurkLirasi); 
+		printf("TEKRAR ISLEM YAPMAK ISTIYORSANIZ 1'E BASIN KAPATMAK ISTIYORSANIZ 0'A BASIN:");
+		scanf("%d", &islem2);
+		if(islem2 == 1) {
+			goto baslangic;
+		}
+		else {
+			printf("KARTINIZ IADE EDILDI");
+			return 0;
+		}
+	}
+	
+	else {
+		printf("GIRDIGINIZ TUTAR BAKIYEDEN FAZLA OLAMAZ");
+	}
+	
+	break;
+		case 2 : 
+		system("cls");
+		printf("LUTFEN YATIRMAK ISTEDIGINIZ TUTARI GIRIN: ");
+		scanf("%d" , &tutar);
+		bakiye += tutar;
+		printf("PARA YATIRILDI....\nYENI BAKIYE:%d %s\n" , bakiye , TurkLirasi);
+		printf("TEKRAR ISLEM YAPMAK ISTIYORSANIZ 1'E BASIN KAPATMAK ISTIYORSANIZ 0'A BASIN:");
+		scanf("%d", &islem2);
+		
+		if (islem2 == 1) {
+			goto baslangic;
+		}
+		
+		else {
+			printf("KARTINIZ IADE EDILDI");
+		}
+		
+		
+		break;
+		
+		case 3 :
+			system("cls");
+			printf("%s %d %s\n" ,"BAKIYENIZ: ", bakiye ,TurkLirasi);
+			printf("TEKRAR ISLEM YAPMAK ISTIYORSANIZ 1'E BASIN KAPATMAK ISTIYORSANIZ 0'A BASIN:");
+			scanf("%d", &islem2);
+			
+			if(islem2 == 1) {
+				goto baslangic;
+			}
+			
+			else {
+				printf("KARTINIZ IADE EDILDI");
+			}
+			
+			break;
+			
+		case 4 :
+			system("cls");
+			printf("HAVALE YAPILACAK ISMI GIRIN\n");
+			scanf("%s" , isim);
+			printf("SOYAD GIRIN\n");
+			scanf("%s" , soyad);
+			printf("%s %s %s "  , isim,soyad,"'nin ibanini girin: ");			//bu ve alttaki satırı girince program hata veriyor
+			scanf("%f" ,&iban123);										
+			printf("tutar gir");
+			scanf("%d" , &tutar);
+			
+			if (tutar > bakiye) {
+				printf("TUTAR BAKIYEDEN FAZLA OLAMAZ\n");
+				printf("TUTAR GIRIN:\t");
+				scanf("%d" , &tutar);
+				if(tutar > bakiye) {
+					printf("TUTAR BAKIYEDEN FAZLA OLAMAZ, ISLEMINIZ KAPATILDI");
+					
+				}
+			}
+			
+			else if (tutar <= bakiye ) {
+				printf("HAVALE YAPILDI\n");
+				printf("%s\t %d\n" , "YENI BAKIYE :" , bakiye-tutar);
+				printf("TEKRAR ISLEM YAPMAK ISTERSENIZ 1'E KAPATMAK ISTERSENIZ 0'A BASIN:");
+				scanf("%d" , &islem2);
+				if(islem2 == 1) {
+					goto baslangic;
+				}
+				else {
+					printf("KARTINIZ IADE EDILDI");
+				}
+			}
+			
+			break;
+			
+			case 5 :
+				system("cls");
+				printf("KART IADE EDILDI");
+				break;
+				
+				
+				
+			default :
+			printf("YANLIS DEGER GIRDINIZ LUTFEN TEKRAR DENEYINIZ\n");
+			printf("---------------------\n");
+			goto baslangic3;
+		}
+	}
+	
+	
