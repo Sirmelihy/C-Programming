@@ -1,0 +1,52 @@
+/* 28.11.2019 */
+#include <stdio.h>
+
+int main () {
+	
+	int i=1,sayi,a,x;
+	
+	while(1) {                          
+	
+	printf("Sayi girin: ");				
+	scanf("%d" , &sayi);
+
+	printf("Sifreli Sayi: ");
+	
+	if(sayi<0) {						
+		sayi *= -1;
+		printf("-");
+		
+	}
+		while (i<= sayi) {				
+			i *= 10;
+		}
+			i = i/10;
+	
+	if (sayi == 0) {		
+		printf("3");
+	}
+	
+		while (i>=1) {					
+			a = ((sayi/i)%10) + 3;		
+			if (a>=10) {				
+				a = a%10;
+			}
+			
+			i = i/10;
+			printf("%d" , a);
+		}
+		
+	printf("\n");
+	printf("Devam (1)? ");
+	scanf("%d" , &x);
+	i = 1;
+	
+	if (x != 1) {
+		break;
+	}
+}
+printf("HOSCAKAL!!!\n");
+
+system("pause");
+return 0 ;
+}
