@@ -1,0 +1,61 @@
+/*19.12.2019*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <time.h>
+
+int main () {
+	srand(time(0));
+	int a;
+	int zar1,zar2;
+	int skor1=0;
+	int skor2=0;
+	char isim1[15];
+	char isim2[15];
+	
+	printf("1.oyuncu ismini girin: ");
+	scanf("%s" , &isim1);
+	printf("2. oyuncu ismini girin: ");
+	scanf("%s " , &isim2);
+	
+	system("cls");
+	
+	while(1) {
+	
+	a = rand()%10;
+	zar1 = a;
+	
+	while (a > 6 || a==0) {
+		a = rand()%10;
+		zar1 = a;
+	}
+	getch();
+	
+	printf("zar %s : %d\n " ,isim1,zar1);
+	
+	getch();
+	
+	a = rand()%10;
+	zar2 = a;
+	
+	while (a > 6 || a==0) {
+		a = rand()%10;
+		zar2 = a;
+	}
+  
+  printf("zar %s : %d\n " ,isim2, zar2);
+	
+  if (zar1>zar2 ) {
+		skor1++;
+		printf("\t\t\t\t%s %d - %d %s \n",isim1,skor1,skor2,isim2);	
+	}
+		else if (zar1<zar2 ) {
+		skor2++;
+		printf("\t\t\t\t%s  %d - %d %s \n",isim1,skor1,skor2,isim2);
+	}
+		if (zar1 == zar2) {
+		printf("\t\t\t\t%s %d - %d %s \n" ,isim1,skor1,skor2,isim2);	
+	}	
+}
+return 0;
+}
